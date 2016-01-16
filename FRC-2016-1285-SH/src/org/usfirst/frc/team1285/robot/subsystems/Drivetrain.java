@@ -3,11 +3,11 @@ package org.usfirst.frc.team1285.robot.subsystems;
 import org.usfirst.frc.team1285.robot.NumberConstants;
 import org.usfirst.frc.team1285.robot.RobotMap;
 import org.usfirst.frc.team1285.robot.commands.TankDrive;
+import org.usfirst.frc.team1285.robot.utilities.PIDController;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
@@ -47,7 +47,10 @@ public class Drivetrain extends Subsystem {
 
 		rightDriveEncoder.setDistancePerPulse(RobotMap.driveEncoderDistPerTick);
 		
-		
+		drivePID = new PIDController(NumberConstants.pDrive,  
+								     NumberConstants.iDrive,  
+				 					 NumberConstants.dDrive); 
+
 
 	}
 	

@@ -15,7 +15,6 @@ public class NoAuton extends Command {
 	@Override
 	protected void execute() {
 		
-
 		
 	}
 
