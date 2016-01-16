@@ -1,11 +1,13 @@
 package org.usfirst.frc.team1285.robot.subsystems;
 
+import org.usfirst.frc.team1285.robot.NumberConstants;
 import org.usfirst.frc.team1285.robot.RobotMap;
 import org.usfirst.frc.team1285.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
@@ -18,8 +20,10 @@ public class Drivetrain extends Subsystem {
 	
 	private RobotDrive drive;
 	
-	private Encoder leftEncoder;
-	private Encoder rightEncoder;
+	private Encoder leftDriveEncoder;
+	private Encoder rightDriveEncoder;
+	
+	public PIDController drivePID;
 	
 	public Drivetrain(){
 		super();
@@ -29,12 +33,22 @@ public class Drivetrain extends Subsystem {
 		
 		drive = new RobotDrive(leftDriveMotor, rightDriveMotor);
 		
-		leftEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A,
-				RobotMap.LEFT_DRIVE_ENCODER_B);
+		leftDriveEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A,  
+				 				RobotMap.LEFT_DRIVE_ENCODER_B,  
+				 				RobotMap.leftDriveTrainEncoderReverse,  
+				 				Encoder.EncodingType.k4X); 
+				 		 
+		leftDriveEncoder.setDistancePerPulse(RobotMap.driveEncoderDistPerTick); 
+						 
+		rightDriveEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A, 
+				 				RobotMap.RIGHT_DRIVE_ENCODER_B,  
+				 				RobotMap.rightDriveTrainEncoderReverse,  
+				 				Encoder.EncodingType.k4X); 
+
+		rightDriveEncoder.setDistancePerPulse(RobotMap.driveEncoderDistPerTick);
 		
-		rightEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A,
-				RobotMap.RIGHT_DRIVE_ENCODER_B);
 		
+
 	}
 	
 	public void drive(double left, double right) {
@@ -47,13 +61,13 @@ public class Drivetrain extends Subsystem {
 
 	
 	public void reset() {
-		leftEncoder.reset();
-		rightEncoder.reset();
+		leftDriveEncoder.reset();
+		rightDriveEncoder.reset();
 	}
 
 	
 	public double getDistance() {
-		return (leftEncoder.getDistance() + rightEncoder.getDistance())/2;
+		return (leftDriveEncoder.getDistance() + rightDriveEncoder.getDistance())/2;
 	}
 
 	@Override

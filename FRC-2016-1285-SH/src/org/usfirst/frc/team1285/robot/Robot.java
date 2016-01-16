@@ -19,6 +19,7 @@ public class Robot extends IterativeRobot {
 
 	public static Drivetrain driveTrain;
 	public static OI oi;
+	public static final Drivetrain drive = new Drivetrain();
 
     Command autonomousCommand;
 
