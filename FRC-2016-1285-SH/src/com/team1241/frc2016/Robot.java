@@ -1,12 +1,17 @@
 
-package org.usfirst.frc.team1285.robot;
+package com.team1241.frc2016;
 
-import org.usfirst.frc.team1285.robot.subsystems.Drivetrain;
+import com.team1241.frc2016.commands.DriveDistance;
+import com.team1241.frc2016.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,11 +22,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 
-	public static Drivetrain driveTrain;
-	public static OI oi;
 	public static final Drivetrain drive = new Drivetrain();
+	public static OI oi;
 
     Command autonomousCommand;
+    public SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -30,8 +35,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         // instantiate the command used for the autonomous period
-		driveTrain = new Drivetrain();
-       
+		autoChooser = new SendableChooser();
+		
+		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 	
 	public void disabledPeriodic() {
@@ -40,7 +46,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+    	autonomousCommand = (Command) autoChooser.getSelected();
+		autonomousCommand.start();
     }
 
     /**
@@ -55,7 +62,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+    	autonomousCommand.cancel();
     }
 
     /**
@@ -63,7 +70,6 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-
     }
 
     /**
@@ -71,6 +77,17 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        updateSmartDashboard();
+        
+        NetworkTable server = NetworkTable.getTable("SmartDashboard");
+        try{
+        	SmartDashboard.putNumber("COG",server.getNumber("COG_X",0));
+        }
+        catch(TableKeyNotDefinedException ex){
+        	
+        }
+        
+        drive.updateCogX(server.getNumber("COG_X",0));
     }
     
     /**
@@ -78,5 +95,10 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void updateSmartDashboard() {
+    	SmartDashboard.putNumber("LeftDrive Encoder", Math.round(drive.getLeftEncoderDist()));
+        SmartDashboard.putNumber("RightDrive Encoder", Math.round(drive.getRightEncoderDist()));
     }
 }
