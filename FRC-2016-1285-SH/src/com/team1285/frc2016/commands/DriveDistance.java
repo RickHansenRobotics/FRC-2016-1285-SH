@@ -1,7 +1,7 @@
-package com.team1241.frc2016.commands;
+package com.team1285.frc2016.commands;
 
 
-import com.team1241.frc2016.Robot;
+import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 

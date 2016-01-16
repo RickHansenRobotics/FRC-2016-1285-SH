@@ -1,8 +1,9 @@
 
-package com.team1241.frc2016;
+package com.team1285.frc2016;
 
-import com.team1241.frc2016.commands.DriveDistance;
-import com.team1241.frc2016.subsystems.Drivetrain;
+import com.team1285.frc2016.autonCommands.NoAuto;
+import com.team1285.frc2016.commands.DriveDistance;
+import com.team1285.frc2016.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -36,7 +37,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         // instantiate the command used for the autonomous period
 		autoChooser = new SendableChooser();
-		
+		autoChooser.addDefault("No Auto", new NoAuto());
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 	

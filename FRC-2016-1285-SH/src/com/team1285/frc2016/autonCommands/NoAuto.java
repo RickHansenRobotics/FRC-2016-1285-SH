@@ -1,6 +1,6 @@
-package com.team1241.frc2016.autonCommands;
+package com.team1285.frc2016.autonCommands;
 
-import com.team1241.frc2016.Robot;
+import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 

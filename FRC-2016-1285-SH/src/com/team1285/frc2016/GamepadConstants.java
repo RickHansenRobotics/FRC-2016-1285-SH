@@ -1,4 +1,4 @@
-package com.team1241.frc2016;
+package com.team1285.frc2016;
 
 /**
  *	These mappings are for the Logitech F310
