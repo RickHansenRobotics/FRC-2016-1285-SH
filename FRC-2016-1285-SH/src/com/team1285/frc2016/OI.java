@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * Used with the Logitech F310.
  * 
  * @author Kaveesha Siribaddana
+ * @since 
  * 
  */
 public class OI {
@@ -171,24 +172,21 @@ public class OI {
     /** 
      * @return Returns corresponding value (true or false) when button is pressed
      */
-    public boolean getDriveBackButton()
-    {
+    public boolean getDriveBackButton(){
         return drivePad.getRawButton(GamepadConstants.BACK_BUTTON);
     }
     
     /** 
      * @return Returns corresponding value (true or false) when button is pressed
      */
-    public boolean getDriveLeftAnalogButton()
-    {
+    public boolean getDriveLeftAnalogButton(){
         return drivePad.getRawButton(GamepadConstants.LEFT_ANALOG_BUTTON);
     }
     
     /** 
      * @return Returns corresponding value (true or false) when button is pressed
      */
-    public boolean getDriveRightAnalogButton()
-    {
+    public boolean getDriveRightAnalogButton(){
         return drivePad.getRawButton(GamepadConstants.RIGHT_ANALOG_BUTTON);
     }
     
