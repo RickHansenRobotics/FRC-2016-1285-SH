@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *	This class is used to set a default command for the Drivetrain subsystem. This command allows the driver to
  *	control the robot using tank drive. 
  *
- * @author Bryan Kristiono
- * @since 2016-01-10
+ * @author Kaveesha Siribaddana
+ * @since 2016-01-16
  */
 public class TankDrive extends Command {
 

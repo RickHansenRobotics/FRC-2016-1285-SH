@@ -4,7 +4,7 @@ package com.team1241.frc2016;
  *	These mappings are for the Logitech F310
  *
  * @author Sagar
- * @author Mahrus Kazi
+ * @author Kaveesha Siribaddana 
  */
 public class GamepadConstants {
     

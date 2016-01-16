@@ -4,8 +4,8 @@ package com.team1241.frc2016;
  * This class is used to save constant values that will be changed every once in awhile. This can include PID tuned
  * values or autonomous distances, etc...
  *
- * @author Mahrus Kazi
- * @since 2015-09-13
+ * @author Kaveesha Siribaddana
+ * 
  */
 public class NumberConstants {
 

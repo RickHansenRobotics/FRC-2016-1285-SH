@@ -1,7 +1,7 @@
 package com.team1241.frc2016.utilities;
 /**
  *
- * @author Team 1241
+ * @author Team 1285
  * Simple PID Controller that assumes regular loop intervals 
  */
 public class PIDController {

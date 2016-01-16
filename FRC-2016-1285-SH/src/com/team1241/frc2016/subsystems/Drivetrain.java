@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * The subsystem that is used for the drive train of the robot. It runs the 4 motors in the drive train as well as
  * read the encoder values from the motors.
- * @author Bryan Kristiono
- * @since 2016-10-10
+ * @author Kaveesha Siribaddana
+ * @since 2016-10-16
  */
 public class Drivetrain extends Subsystem {
 	

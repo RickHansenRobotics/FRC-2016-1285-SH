@@ -8,9 +8,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  * Used with the Logitech F310.
  * 
- * @author Mahrus Kazi
- * @author Bryan Kristiono
- * @since 2016-01-10
+ * @author Kaveesha Siribaddana
+ * 
  */
 public class OI {
     
