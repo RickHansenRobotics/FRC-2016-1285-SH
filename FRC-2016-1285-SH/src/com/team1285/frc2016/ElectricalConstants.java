@@ -9,18 +9,21 @@ public class ElectricalConstants {
 	//**************************************************************************
 	//**************************** DRIVE MOTORS*********************************
 	//**************************************************************************        
-	  public static final int LEFT_DRIVE                                    = 1;
-	  public static final int RIGHT_DRIVE                                   = 2; 
+	  public static final int LEFT_DRIVE_FRONT                              = 1;
+	  public static final int LEFT_DRIVE_BACK                               = 2;
+	  
+	  public static final int RIGHT_DRIVE_FRONT                             = 3;
+	  public static final int RIGHT_DRIVE_BACK                              = 4; 
 	
 	//**************************************************************************
 	//************************** DRIVE ENCODERS ********************************
 	//**************************************************************************
 
-	  public static final int LEFT_DRIVE_ENCODER_A                          = 2;
-	  public static final int LEFT_DRIVE_ENCODER_B                          = 3;
+	  public static final int LEFT_DRIVE_ENCODER_A                          = 0;
+	  public static final int LEFT_DRIVE_ENCODER_B                          = 1;
 
-	  public static final int RIGHT_DRIVE_ENCODER_A                         = 1;
-	  public static final int RIGHT_DRIVE_ENCODER_B                         = 0;
+	  public static final int RIGHT_DRIVE_ENCODER_A                         = 2;
+	  public static final int RIGHT_DRIVE_ENCODER_B                         = 3;
 	
 	//**************************************************************************
 	//********************* DRIVE ENCODER CONSTANTS ****************************

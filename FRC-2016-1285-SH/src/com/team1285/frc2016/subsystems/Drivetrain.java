@@ -17,8 +17,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
-	CANTalon leftDrive;
-	CANTalon rightDrive;
+	CANTalon leftDriveFront;
+	CANTalon leftDriveBack;
+	
+	CANTalon rightDriveFront;
+	CANTalon rightDriveBack;
 	
 	Encoder leftDriveEncoder;               
     Encoder rightDriveEncoder; 
@@ -28,11 +31,11 @@ public class Drivetrain extends Subsystem {
     public double cogx = 0;
 
 	public Drivetrain() {
-		rightDrive = new CANTalon(ElectricalConstants.RIGHT_DRIVE);
+		leftDriveFront = new CANTalon(ElectricalConstants.LEFT_DRIVE_FRONT);
+		leftDriveBack = new CANTalon(ElectricalConstants.LEFT_DRIVE_BACK);
 		
-		
-		
-		leftDrive = new CANTalon(ElectricalConstants.LEFT_DRIVE);
+		rightDriveFront = new CANTalon(ElectricalConstants.RIGHT_DRIVE_FRONT);	
+		rightDriveBack = new CANTalon(ElectricalConstants.RIGHT_DRIVE_BACK);
 		
 		leftDriveEncoder = new Encoder(ElectricalConstants.LEFT_DRIVE_ENCODER_A, 
 				ElectricalConstants.LEFT_DRIVE_ENCODER_B, 
@@ -54,13 +57,7 @@ public class Drivetrain extends Subsystem {
 									NumberConstants.dDrive);
 	}
 	
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-//    	setDefaultCommand(new CameraTrack());
-    	setDefaultCommand(new TankDrive());
-//    	setDefaultCommand(new ArcadeDrive());
-    }
+    
     
     public void updateCogX(double x){
     	cogx = x;
@@ -69,15 +66,16 @@ public class Drivetrain extends Subsystem {
     public void runLeftDrive(double pwmVal) {
     	if(pwmVal>1)
     		pwmVal = 1;
-    	leftDrive.set(pwmVal);
-    	
+    	leftDriveFront.set(pwmVal);
+    	leftDriveBack.set(pwmVal);   	
     }
     
     public void runRightDrive(double pwmVal) {
     	pwmVal = pwmVal*1.4;
     	if(pwmVal>1)
     		pwmVal = 1;
-    	rightDrive.set(pwmVal);
+    	rightDriveFront.set(pwmVal);
+    	rightDriveBack.set(pwmVal);
     	
     }
     
@@ -161,6 +159,11 @@ public class Drivetrain extends Subsystem {
     public void resetEncoders() {
         leftDriveEncoder.reset();
         rightDriveEncoder.reset();
+    }
+    public void initDefaultCommand() {
+        
+    	setDefaultCommand(new TankDrive());
+//    	setDefaultCommand(new HybridArcadeDrive());
     }
 }
 
