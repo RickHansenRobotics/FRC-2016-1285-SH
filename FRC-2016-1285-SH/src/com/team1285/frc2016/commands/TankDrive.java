@@ -5,8 +5,8 @@ import com.team1285.frc2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *	This class is used to set a default command for the Drivetrain subsystem. This command allows the driver to
- *	control the robot using tank drive. 
+ * This class is used to set a default command for the Drivetrain subsystem.
+ * This command allows the driver to control the robot using tank drive.
  *
  * @author Kaveesha Siribaddana
  * @since 2016-01-16
@@ -21,8 +21,9 @@ public class TankDrive extends Command {
 	}
 
 	/**
-	 * This method will run as long as isFinished() returns true
-	 * In this method values from the joystick are sent to the corresponding drives to make the robot move.
+	 * This method will run as long as isFinished() returns true In this method
+	 * values from the joystick are sent to the corresponding drives to make the
+	 * robot move.
 	 */
 	protected void execute() {
 		Robot.drive.runLeftDrive(Robot.oi.getDriveLeftY());
@@ -36,6 +37,6 @@ public class TankDrive extends Command {
 	protected void end() {
 	}
 
-	protected void interrupted() {   
+	protected void interrupted() {
 	}
 }
