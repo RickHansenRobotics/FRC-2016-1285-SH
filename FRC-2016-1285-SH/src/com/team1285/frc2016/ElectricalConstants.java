@@ -28,14 +28,19 @@ public class ElectricalConstants {
 	//**************************************************************************
 	//********************* DRIVE ENCODER CONSTANTS ****************************
 	//**************************************************************************
-	public static final int driveWheelRadius = 8;//wheel radius in inches
-	public static final int drivePulsePerRotation = 128; //encoder pulse per rotation
-	public static final double driveGearRatio = 10.71; //ratio between wheel and encoder
-	public static final double driveEncoderPulsePerRot = drivePulsePerRotation*driveGearRatio; //pulse per rotation * gear ratio
-	public static final double driveEncoderDistPerTick =(Math.PI*2*driveWheelRadius)/driveEncoderPulsePerRot;
-	public static final boolean rightDriveTrainEncoderReverse = false; 
-	public static final boolean leftDriveTrainEncoderReverse = false; 
+	  public static final int driveWheelRadius = 8;//wheel radius in inches
+	  public static final int drivePulsePerRotation = 128; //encoder pulse per rotation
+	  public static final double driveGearRatio = 10.71; //ratio between wheel and encoder
+	  public static final double driveEncoderPulsePerRot = 
+			  			drivePulsePerRotation*driveGearRatio; //pulse per rotation * gear ratio
+	  public static final double driveEncoderDistPerTick =
+			  			(Math.PI*2*driveWheelRadius)/driveEncoderPulsePerRot;
+	  public static final boolean rightDriveTrainEncoderReverse = false; 
+	  public static final boolean leftDriveTrainEncoderReverse = false; 
 
-	 
-	
+	//**************************************************************************
+	//************************** INTAKE MOTORS *********************************
+	//**************************************************************************
+	  public static final int LEFT_INTAKE_MOTOR                             = 5;
+	  public static final int RIGHT_INTAKE_MOTOR                            = 6;
 }

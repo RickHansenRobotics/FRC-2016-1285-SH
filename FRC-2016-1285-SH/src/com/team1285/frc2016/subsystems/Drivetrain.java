@@ -7,6 +7,8 @@ import com.team1285.frc2016.utilities.PIDController;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -161,8 +163,12 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-
 		setDefaultCommand(new TankDrive());
-		// setDefaultCommand(new HybridArcadeDrive());
+		//setDefaultCommand(new HybridArcadeDrive());
+	}
+
+	private boolean getToolStartButton() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

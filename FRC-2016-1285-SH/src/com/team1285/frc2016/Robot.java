@@ -2,11 +2,10 @@
 package com.team1285.frc2016;
 
 import com.team1285.frc2016.autonCommands.NoAuto;
-import com.team1285.frc2016.commands.DriveDistance;
 import com.team1285.frc2016.subsystems.Drivetrain;
+import com.team1285.frc2016.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -24,9 +23,10 @@ import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
 public class Robot extends IterativeRobot {
 
 	public static final Drivetrain drive = new Drivetrain();
-	public static OI oi;
+	public static final Intake intake = new Intake();
+	public static final OI oi = new OI();
 
-	Command autonomousCommand;
+	//Command autonomousCommand;
 	public SendableChooser autoChooser;
 
 	/**
@@ -34,10 +34,11 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		oi = new OI();
+		
 		// instantiate the command used for the autonomous period
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No Auto", new NoAuto());
+		//autonomousCommand = new autoChooser()
 		SmartDashboard.putData("Auto Mode", autoChooser);
 	}
 
@@ -47,8 +48,8 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
-		autonomousCommand = (Command) autoChooser.getSelected();
-		autonomousCommand.start();
+		//autonomousCommand = (Command) autoChooser.getSelected();
+		//autonomousCommand.start();
 	}
 
 	/**
@@ -59,11 +60,13 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		System.out.println("Teleop Init Works");
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		autonomousCommand.cancel();
+		//autonomousCommand.cancel();
+		
 	}
 
 	/**
@@ -77,6 +80,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		System.out.println("tele-period Works");
 		Scheduler.getInstance().run();
 		updateSmartDashboard();
 
