@@ -31,6 +31,7 @@ public class Drivetrain extends Subsystem {
 	Nav6 nav6;
 
 	public PIDController drivePID;
+	public PIDController gyroPID;
 
 	public double cogx = 0;
 
@@ -53,7 +54,12 @@ public class Drivetrain extends Subsystem {
 
 		rightDriveEncoder.setDistancePerPulse(ElectricalConstants.driveEncoderDistPerTick);
 
-		drivePID = new PIDController(NumberConstants.pDrive, NumberConstants.iDrive, NumberConstants.dDrive);
+		drivePID = new PIDController(NumberConstants.pDrive,
+				                     NumberConstants.iDrive, 
+				                     NumberConstants.dDrive);
+		gyroPID = new PIDController(NumberConstants.pGyro,
+                                    NumberConstants.iGyro, 
+                                    NumberConstants.dGyro);
 	}
 
 	
@@ -80,10 +86,13 @@ public class Drivetrain extends Subsystem {
 	public void driveStraight(double setPoint, double speed, double setAngle) {
 		
 		drivePID.calcPID(setPoint, getAverageDistance(), 5);
+		gyroPID.calcPID(setAngle, getYaw(), 5);
 		double output = drivePID.calcPID(setPoint, getAverageDistance(), 1);
+		double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
+		
 
-		runLeftDrive(output * speed);
-		runRightDrive(-output * speed);
+		runLeftDrive(output + angle * speed);
+		runRightDrive(-output + angle * speed);
 	}
 
 	/**
