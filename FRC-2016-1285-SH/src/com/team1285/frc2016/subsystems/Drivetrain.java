@@ -77,7 +77,9 @@ public class Drivetrain extends Subsystem {
 		return (getLeftEncoderDist() + getRightEncoderDist()) / 2;
 	}
 
-	public void driveStraight(double setPoint, double speed) {
+	public void driveStraight(double setPoint, double speed, double setAngle) {
+		
+		drivePID.calcPID(setPoint, getAverageDistance(), 5);
 		double output = drivePID.calcPID(setPoint, getAverageDistance(), 1);
 
 		runLeftDrive(output * speed);
