@@ -82,18 +82,11 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		System.out.println("tele-period Works");
+		
 		Scheduler.getInstance().run();
 		updateSmartDashboard();
 
-		NetworkTable server = NetworkTable.getTable("SmartDashboard");
-		try {
-			SmartDashboard.putNumber("COG", server.getNumber("COG_X", 0));
-		} catch (TableKeyNotDefinedException ex) {
-
-		}
-
-		drive.updateCogX(server.getNumber("COG_X", 0));
+			
 	}
 
 	/**
@@ -104,7 +97,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void updateSmartDashboard() {
-		SmartDashboard.putNumber("LeftDrive Encoder", Math.round(drive.getLeftEncoderDist()));
-		SmartDashboard.putNumber("RightDrive Encoder", Math.round(drive.getRightEncoderDist()));
+		SmartDashboard.putNumber("Left Drive Encoder", Math.round(drive.getLeftEncoderDist()));
+		SmartDashboard.putNumber("Right Drive Encoder", Math.round(drive.getRightEncoderDist()));
 	}
 }

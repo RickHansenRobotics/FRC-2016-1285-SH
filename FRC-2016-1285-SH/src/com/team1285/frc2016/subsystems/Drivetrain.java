@@ -3,12 +3,11 @@ package com.team1285.frc2016.subsystems;
 import com.team1285.frc2016.ElectricalConstants;
 import com.team1285.frc2016.NumberConstants;
 import com.team1285.frc2016.commands.TankDrive;
+import com.team1285.frc2016.utilities.Nav6;
 import com.team1285.frc2016.utilities.PIDController;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -28,6 +27,8 @@ public class Drivetrain extends Subsystem {
 
 	Encoder leftDriveEncoder;
 	Encoder rightDriveEncoder;
+	
+	Nav6 nav6;
 
 	public PIDController drivePID;
 
@@ -55,21 +56,16 @@ public class Drivetrain extends Subsystem {
 		drivePID = new PIDController(NumberConstants.pDrive, NumberConstants.iDrive, NumberConstants.dDrive);
 	}
 
-	public void updateCogX(double x) {
-		cogx = x;
-	}
+	
 
 	public void runLeftDrive(double pwmVal) {
-		if (pwmVal > 1)
-			pwmVal = 1;
+		
 		leftDriveFront.set(pwmVal);
 		leftDriveBack.set(pwmVal);
 	}
 
 	public void runRightDrive(double pwmVal) {
-		pwmVal = pwmVal * 1.4;
-		if (pwmVal > 1)
-			pwmVal = 1;
+		
 		rightDriveFront.set(pwmVal);
 		rightDriveBack.set(pwmVal);
 
@@ -171,4 +167,69 @@ public class Drivetrain extends Subsystem {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+/************************GYRO FUNCTIONS************************/
+    
+    /**
+     * This function is used to check if the gyro is connected
+     * 
+     * @return Returns true or false depending on the state of the gyro
+     */
+    public boolean gyroConnected(){
+    	return nav6.isConnected();
+    }
+    
+    /**
+     * This function is used to check if the gyro is calibrating
+     * 
+     * @return Returns true or false depending on the state of the gyro
+     */
+    public boolean gyroCalibrating(){
+    	return nav6.isCalibrating();
+    }
+    
+    /**
+     * This function returns the YAW reading from the gyro
+     * 
+     * @return Returns YAW
+     */
+    public double getYaw(){
+    	return nav6.getYaw();
+    }
+    
+    /**
+     * This function returns the PITCH reading from the gyro
+     * 
+     * @return Returns PITCH
+     */
+    public double getPitch(){
+    	return nav6.getPitch();
+    }
+    
+    /**
+     * This function returns the ROLL reading from the gyro
+     * 
+     * @return Returns ROLL
+     */
+    public double getRoll(){
+    	return nav6.getRoll();
+    }
+    
+    /**
+     * This function returns the heading from the gyro
+     * 
+     * @return Returns compass heading
+     */
+    public double getCompassHeading(){
+    	return nav6.getCompassHeading();
+    }
+    
+    /**
+     * Resets the gyro back to zero
+     */
+    public void resetGyro(){
+    	nav6.zeroYaw();
+    }
+
+
 }
