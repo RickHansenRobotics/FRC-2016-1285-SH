@@ -4,13 +4,13 @@ import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TurnCommand extends Command{
+public class AutonTurn extends Command{
 
 	private double angle;
 	private double speed;
 	private double timeOut;
 	
-    public TurnCommand(double angle, double speed, double timeOut) {
+    public AutonTurn(double angle, double speed, double timeOut) {
     	this.angle = angle;
     	this.speed = speed;
     	this.timeOut = timeOut;
