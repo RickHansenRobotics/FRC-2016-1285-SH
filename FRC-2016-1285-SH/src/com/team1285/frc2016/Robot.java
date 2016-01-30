@@ -3,6 +3,8 @@ package com.team1285.frc2016;
 
 import com.team1285.frc2016.autonCommands.NoAuto;
 import com.team1285.frc2016.subsystems.Drivetrain;
+import com.team1285.frc2016.subsystems.Intake;
+import com.team1285.frc2016.subsystems.Wedge;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,9 +23,11 @@ import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
  */
 public class Robot extends IterativeRobot {
 
-	public static final Drivetrain drive = new Drivetrain();
 	public static final OI oi = new OI();
-
+    public static final Drivetrain drive = new Drivetrain();
+    public static final Intake intake = new Intake();
+    public static final Wedge wedge = new Wedge();
+   
 	//Command autonomousCommand;
 	public SendableChooser autoChooser;
 
