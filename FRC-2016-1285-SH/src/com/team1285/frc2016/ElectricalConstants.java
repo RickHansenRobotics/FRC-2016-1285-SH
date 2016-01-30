@@ -9,6 +9,7 @@ public class ElectricalConstants {
 	//**************************************************************************
 	//**************************** DRIVE MOTORS*********************************
 	//**************************************************************************        
+	  
 	  public static final int LEFT_DRIVE_FRONT                              = 1;
 	  public static final int LEFT_DRIVE_BACK                               = 2;
 	  
@@ -28,6 +29,7 @@ public class ElectricalConstants {
 	//**************************************************************************
 	//********************* DRIVE ENCODER CONSTANTS ****************************
 	//**************************************************************************
+	  
 	  public static final int driveWheelRadius = 8;//wheel radius in inches
 	  public static final int drivePulsePerRotation = 128; //encoder pulse per rotation
 	  public static final double driveGearRatio = 10.71; //ratio between wheel and encoder
@@ -41,6 +43,16 @@ public class ElectricalConstants {
 	//**************************************************************************
 	//************************** INTAKE MOTORS *********************************
 	//**************************************************************************
+	  
 	  public static final int LEFT_INTAKE_MOTOR                             = 5;
 	  public static final int RIGHT_INTAKE_MOTOR                            = 6;
+	  
+	//**************************************************************************
+	//*************************** WEDGE MOTORS *********************************
+	//**************************************************************************
+	  
+	  public static final int LEFT_WEDGE_MOTOR                              = 7;
+	  public static final int RIGHT_WEDGE_MOTOR                             = 8;
+	  
+	  
 }
