@@ -94,6 +94,14 @@ public class Drivetrain extends Subsystem {
 		runLeftDrive(output + angle * speed);
 		runRightDrive(-output + angle * speed);
 	}
+	
+	public void turnDrive(double setAngle, double speed) {
+    	double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
+    	
+    	runLeftDrive(angle*speed);
+    	runRightDrive(angle*speed);
+    }
+
 
 	/**
 	 * Resets the encoder AND gyro to zero
