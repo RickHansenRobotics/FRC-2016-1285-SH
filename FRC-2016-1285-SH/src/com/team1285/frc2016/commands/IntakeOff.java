@@ -4,9 +4,9 @@ import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeOffs extends Command{
+public class IntakeOff extends Command{
 
-	public IntakeOffs(){
+	public IntakeOff(){
 		requires(Robot.intake);
 	}
 	
