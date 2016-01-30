@@ -55,10 +55,10 @@ public class ElectricalConstants {
 	  public static final int RIGHT_WEDGE_MOTOR                             = 8;
 	
 	//**************************************************************************
-	//************************** WEDGE ENCODERS ********************************
+	//***************************** WEDGE POT **********************************
 	//**************************************************************************
 	  
-	  public static final int LEFT_WEDGE_POT                                = 5;
-	  public static final int RIGHT_WEDGE_POT                               = 6;
+	  public static final int WEDGE_POT                                = 5;
+	  
 	  
 }

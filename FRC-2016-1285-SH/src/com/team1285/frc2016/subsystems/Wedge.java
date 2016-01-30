@@ -11,13 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Wedge extends PIDSubsystem{
 
 	CANTalon leftWedgeMotor;
-	AnalogInput leftWedgePot;
-	
 	CANTalon rightWedgeMotor;
-	AnalogInput rightWedgePot;
 	
-	double averagePotVoltage = 
-		(leftWedgePot.getAverageVoltage() + rightWedgePot.getAverageVoltage() ) /2 ;
+	AnalogInput wedgePot;
 	
 	public Wedge(){
 		super("Wrist", 2.0, 0.0, 0.0);
@@ -25,9 +21,8 @@ public class Wedge extends PIDSubsystem{
 		leftWedgeMotor = new CANTalon(ElectricalConstants.LEFT_WEDGE_MOTOR);
 		rightWedgeMotor = new CANTalon(ElectricalConstants.RIGHT_WEDGE_MOTOR);
 		
-		leftWedgePot = new AnalogInput(ElectricalConstants.LEFT_WEDGE_POT);
-		rightWedgePot = new AnalogInput(ElectricalConstants.RIGHT_WEDGE_POT);
-		
+		wedgePot = new AnalogInput(ElectricalConstants.WEDGE_POT);
+				
 		setAbsoluteTolerance(0.05);
 		getPIDController().setContinuous(false);
 
@@ -42,7 +37,7 @@ public class Wedge extends PIDSubsystem{
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return averagePotVoltage;
+		return wedgePot.getAverageVoltage();
 	}
 
 	@Override
