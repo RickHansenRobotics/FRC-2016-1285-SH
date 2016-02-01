@@ -2,17 +2,18 @@
 package com.team1285.frc2016;
 
 import com.team1285.frc2016.autonCommands.NoAuton;
+import com.team1285.frc2016.autonCommands.NormalAuton;
+import com.team1285.frc2016.autonCommands.SpyZoneAuton;
 import com.team1285.frc2016.subsystems.Drivetrain;
 import com.team1285.frc2016.subsystems.Intake;
 import com.team1285.frc2016.subsystems.Wedge;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,17 +32,16 @@ public class Robot extends IterativeRobot {
 	//Command autonomousCommand;
 	public SendableChooser autoChooser;
 
+	Command autonomousCommand;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		
-		// instantiate the command used for the autonomous period
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No Auto", new NoAuton());
-		//autonomousCommand = new autoChooser()
-		SmartDashboard.putData("Auto Mode", autoChooser);
+		autoChooser.addDefault("No Auton", new NoAuton());
+		autoChooser.addObject("Normal Auton", new NormalAuton());
+		autoChooser.addObject("SpyZone Auton", new SpyZoneAuton());
 	}
 
 	public void disabledPeriodic() {
@@ -49,9 +49,8 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		// schedule the autonomous command (example)
-		//autonomousCommand = (Command) autoChooser.getSelected();
-		//autonomousCommand.start();
+		autonomousCommand = (Command) autoChooser.getSelected();
+		autonomousCommand.start();
 	}
 
 	/**
@@ -66,8 +65,8 @@ public class Robot extends IterativeRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		//autonomousCommand.cancel();
+		if(autonomousCommand!=null)
+    		autonomousCommand.cancel();
 		
 	}
 
