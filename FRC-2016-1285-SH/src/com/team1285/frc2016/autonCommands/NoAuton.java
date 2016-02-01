@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class NoAuto extends Command {
+public class NoAuton extends Command {
 
-    public NoAuto() {
+    public NoAuton() {
         this.requires(Robot.drive);
     }
 

@@ -1,7 +1,7 @@
 
 package com.team1285.frc2016;
 
-import com.team1285.frc2016.autonCommands.NoAuto;
+import com.team1285.frc2016.autonCommands.NoAuton;
 import com.team1285.frc2016.subsystems.Drivetrain;
 import com.team1285.frc2016.subsystems.Intake;
 import com.team1285.frc2016.subsystems.Wedge;
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 		
 		// instantiate the command used for the autonomous period
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No Auto", new NoAuto());
+		autoChooser.addDefault("No Auto", new NoAuton());
 		//autonomousCommand = new autoChooser()
 		SmartDashboard.putData("Auto Mode", autoChooser);
 	}
