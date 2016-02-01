@@ -16,7 +16,7 @@ public class Wedge extends PIDSubsystem{
 	AnalogInput wedgePot;
 	
 	public Wedge(){
-		super("Wrist", 2.0, 0.0, 0.0);
+		super("Wedge", 2.0, 0.0, 0.0);
 		
 		leftWedgeMotor = new CANTalon(ElectricalConstants.LEFT_WEDGE_MOTOR);
 		rightWedgeMotor = new CANTalon(ElectricalConstants.RIGHT_WEDGE_MOTOR);
