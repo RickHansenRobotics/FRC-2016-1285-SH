@@ -24,6 +24,10 @@ public class Wedge extends PIDSubsystem {
 		getPIDController().setContinuous(false);
 
 	}
+	
+	public double getWedgeSetpoint(){
+		return wedgePot.getAverageVoltage();
+	}
 
 	@Override
 	protected double returnPIDInput() {

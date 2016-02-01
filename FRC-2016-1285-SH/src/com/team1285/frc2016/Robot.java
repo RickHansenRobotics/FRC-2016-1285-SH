@@ -96,7 +96,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void updateSmartDashboard() {
-		SmartDashboard.putNumber("Left Drive Encoder", Math.round(drive.getLeftEncoderDist()));
-		SmartDashboard.putNumber("Right Drive Encoder", Math.round(drive.getRightEncoderDist()));
+		SmartDashboard.putNumber("Left Drive Encoder", 
+				Math.round(drive.getLeftEncoderDist()));
+		SmartDashboard.putNumber("Right Drive Encoder", 
+				Math.round(drive.getRightEncoderDist()));
+		SmartDashboard.putNumber("Wedge Potentiometer", 
+				Math.round(wedge.getWedgeSetpoint()));
 	}
 }
