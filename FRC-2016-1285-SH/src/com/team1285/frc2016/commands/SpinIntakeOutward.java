@@ -19,7 +19,11 @@ public class SpinIntakeOutward extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.intake.intakeForward();
+		if(Robot.oi.getToolRightTrigger()){
+			Robot.intake.intakeForward();
+		}else{
+			Robot.intake.intakeStop();
+		}
 		
 	}
 

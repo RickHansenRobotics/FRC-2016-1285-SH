@@ -18,7 +18,11 @@ public class SpinIntakeInward extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.intake.intakeReverse();
+		if(Robot.oi.getToolRightBumper()){
+			Robot.intake.intakeReverse();
+		}else{
+			Robot.intake.intakeStop();
+		}	
 		
 	}
 
