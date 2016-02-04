@@ -18,32 +18,33 @@ public class WedgeSetpoint extends Command {
 	}
 
 	protected void initialize() {
-		Robot.wedge.enable();
-		Robot.wedge.setSetpoint(setpoint);
+		
 	}
 
 	protected void execute() {
 		if(Robot.oi.getToolLeftBumper()){
 			if(currentWedgeSetpoint == maxSetpoint){
-				Robot.wedge.setSetpoint(currentWedgeSetpoint);
+		//		Robot.wedge.setSetpoint(currentWedgeSetpoint);
 			}else{
 				currentWedgeSetpoint = currentWedgeSetpoint + setpointIncreaser;
-				Robot.wedge.setSetpoint(currentWedgeSetpoint);
+			//	Robot.wedge.setSetpoint(currentWedgeSetpoint);
 			}			
 		}
 		if(Robot.oi.getToolLeftTrigger()){
 			if(currentWedgeSetpoint == minSetpoint){
-				Robot.wedge.setSetpoint(currentWedgeSetpoint);
+				//Robot.wedge.setSetpoint(currentWedgeSetpoint);
 			}else{
 				currentWedgeSetpoint = currentWedgeSetpoint - setpointIncreaser;
-				Robot.wedge.setSetpoint(currentWedgeSetpoint);
+				//Robot.wedge.setSetpoint(currentWedgeSetpoint);
 			}
 		}
 		
 	}
 
 	protected boolean isFinished() {
-		return Robot.wedge.onTarget();
+		return false;
+		
+		//return Robot.wedge.onTarget();
 	}
 
 	protected void end() {
