@@ -1,17 +1,21 @@
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
 package com.team1285.frc2016.commands;
-
 
 import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveDistance extends Command{
-	
+public class DriveDistance extends Command {
+
 	private double distance;
 	private double setAngle;
 	private double speed;
-	
-	public DriveDistance(double distance, double speed, double setAngle){
+
+	public DriveDistance(double distance, double speed, double setAngle) {
 		requires(Robot.drive);
 		this.distance = distance;
 		this.setAngle = setAngle;

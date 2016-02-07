@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
 package com.team1285.frc2016;
 
 /**
@@ -27,15 +32,13 @@ public class NumberConstants {
 	public static final double dGyro 									 = 0.00;
 	
 	//**************************************************************************
-    //*************************PID VALUES (ELEVATOR)****************************
+    //**************************PID VALUES (WEDGE)******************************
     //**************************************************************************
-	//Original value = 0.05
 	
-	public static final double pElev 									 = 0.03;
-	public static final double iElev 									 = 0.00;
-	public static final double dElev 									 = 0.00;
 	
-	public static final double pElevDown								 = 0.03;
-	public static final double iElevDown								 = 0.00;
-	public static final double dElevDown								 = 0.00;
+	public static final double pWedge 									 = 0.00;
+	public static final double iWedge 									 = 0.00;
+	public static final double dWedge									 = 0.00;
+	
+	
 }

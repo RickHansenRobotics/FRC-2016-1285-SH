@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
 package com.team1285.frc2016.subsystems;
 
 import com.team1285.frc2016.ElectricalConstants;
@@ -27,7 +32,7 @@ public class Drivetrain extends Subsystem {
 
 	Encoder leftDriveEncoder;
 	Encoder rightDriveEncoder;
-	
+
 	Nav6 nav6;
 
 	public PIDController drivePID;
@@ -54,54 +59,48 @@ public class Drivetrain extends Subsystem {
 
 		rightDriveEncoder.setDistancePerPulse(ElectricalConstants.driveEncoderDistPerTick);
 
-		drivePID = new PIDController(NumberConstants.pDrive,
-				                     NumberConstants.iDrive, 
-				                     NumberConstants.dDrive);
-		gyroPID = new PIDController(NumberConstants.pGyro,
-                                    NumberConstants.iGyro, 
-                                    NumberConstants.dGyro);
+		drivePID = new PIDController(NumberConstants.pDrive, NumberConstants.iDrive, NumberConstants.dDrive);
+		gyroPID = new PIDController(NumberConstants.pGyro, NumberConstants.iGyro, NumberConstants.dGyro);
 	}
 
-	
-
+	/** Runs left side of Drive */
 	public void runLeftDrive(double pwmVal) {
-		
+
 		leftDriveFront.set(pwmVal);
 		leftDriveBack.set(pwmVal);
 	}
 
+	/** Runs right side of Drive */
 	public void runRightDrive(double pwmVal) {
-		
+
 		rightDriveFront.set(pwmVal);
 		rightDriveBack.set(pwmVal);
 
 	}
-	
-	
 
+	/** Gets average distance that drive has gone */
 	public double getAverageDistance() {
 		return (getLeftEncoderDist() + getRightEncoderDist()) / 2;
 	}
 
+	/** Drive goes in a straight line */
 	public void driveStraight(double setPoint, double speed, double setAngle) {
-		
+
 		drivePID.calcPID(setPoint, getAverageDistance(), 5);
 		gyroPID.calcPID(setAngle, getYaw(), 5);
 		double output = drivePID.calcPID(setPoint, getAverageDistance(), 1);
 		double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
-		
 
 		runLeftDrive(output + angle * speed);
 		runRightDrive(-output + angle * speed);
 	}
-	
-	public void turnDrive(double setAngle, double speed) {
-    	double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
-    	
-    	runLeftDrive(angle*speed);
-    	runRightDrive(angle*speed);
-    }
 
+	public void turnDrive(double setAngle, double speed) {
+		double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
+
+		runLeftDrive(angle * speed);
+		runRightDrive(angle * speed);
+	}
 
 	/**
 	 * Resets the encoder AND gyro to zero
@@ -179,76 +178,75 @@ public class Drivetrain extends Subsystem {
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new TankDrive());
-		//setDefaultCommand(new HybridArcadeDrive());
+		// setDefaultCommand(new HybridArcadeDrive());
 	}
 
 	private boolean getToolStartButton() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-/************************GYRO FUNCTIONS************************/
-    
-    /**
-     * This function is used to check if the gyro is connected
-     * 
-     * @return Returns true or false depending on the state of the gyro
-     */
-    public boolean gyroConnected(){
-    	return nav6.isConnected();
-    }
-    
-    /**
-     * This function is used to check if the gyro is calibrating
-     * 
-     * @return Returns true or false depending on the state of the gyro
-     */
-    public boolean gyroCalibrating(){
-    	return nav6.isCalibrating();
-    }
-    
-    /**
-     * This function returns the YAW reading from the gyro
-     * 
-     * @return Returns YAW
-     */
-    public double getYaw(){
-    	return nav6.getYaw();
-    }
-    
-    /**
-     * This function returns the PITCH reading from the gyro
-     * 
-     * @return Returns PITCH
-     */
-    public double getPitch(){
-    	return nav6.getPitch();
-    }
-    
-    /**
-     * This function returns the ROLL reading from the gyro
-     * 
-     * @return Returns ROLL
-     */
-    public double getRoll(){
-    	return nav6.getRoll();
-    }
-    
-    /**
-     * This function returns the heading from the gyro
-     * 
-     * @return Returns compass heading
-     */
-    public double getCompassHeading(){
-    	return nav6.getCompassHeading();
-    }
-    
-    /**
-     * Resets the gyro back to zero
-     */
-    public void resetGyro(){
-    	nav6.zeroYaw();
-    }
 
+	/************************ GYRO FUNCTIONS ************************/
+
+	/**
+	 * This function is used to check if the gyro is connected
+	 * 
+	 * @return Returns true or false depending on the state of the gyro
+	 */
+	public boolean gyroConnected() {
+		return nav6.isConnected();
+	}
+
+	/**
+	 * This function is used to check if the gyro is calibrating
+	 * 
+	 * @return Returns true or false depending on the state of the gyro
+	 */
+	public boolean gyroCalibrating() {
+		return nav6.isCalibrating();
+	}
+
+	/**
+	 * This function returns the YAW reading from the gyro
+	 * 
+	 * @return Returns YAW
+	 */
+	public double getYaw() {
+		return nav6.getYaw();
+	}
+
+	/**
+	 * This function returns the PITCH reading from the gyro
+	 * 
+	 * @return Returns PITCH
+	 */
+	public double getPitch() {
+		return nav6.getPitch();
+	}
+
+	/**
+	 * This function returns the ROLL reading from the gyro
+	 * 
+	 * @return Returns ROLL
+	 */
+	public double getRoll() {
+		return nav6.getRoll();
+	}
+
+	/**
+	 * This function returns the heading from the gyro
+	 * 
+	 * @return Returns compass heading
+	 */
+	public double getCompassHeading() {
+		return nav6.getCompassHeading();
+	}
+
+	/**
+	 * Resets the gyro back to zero
+	 */
+	public void resetGyro() {
+		nav6.zeroYaw();
+	}
 
 }

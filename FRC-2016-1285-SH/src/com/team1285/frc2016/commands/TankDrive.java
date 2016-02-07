@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
 package com.team1285.frc2016.commands;
 
 import com.team1285.frc2016.Robot;
@@ -26,9 +31,18 @@ public class TankDrive extends Command {
 	 * robot move.
 	 */
 	protected void execute() {
-		
-		Robot.drive.runLeftDrive(0.5*(Robot.oi.getDriveLeftY()));
-		Robot.drive.runRightDrive(0.5*(Robot.oi.getDriveRightY()));
+		/**
+		 * This statement will run the drive at 80% of speed unless Left Bumper 
+		 * is pressed.
+		 */
+		if (Robot.oi.getDriveLeftBumper()) {
+			Robot.drive.runLeftDrive((Robot.oi.getDriveLeftY()));
+			Robot.drive.runRightDrive((Robot.oi.getDriveRightY()));
+		} else {
+			Robot.drive.runLeftDrive(0.8 * (Robot.oi.getDriveLeftY()));
+			Robot.drive.runRightDrive(0.8 * (Robot.oi.getDriveRightY()));
+		}
+
 	}
 
 	protected boolean isFinished() {

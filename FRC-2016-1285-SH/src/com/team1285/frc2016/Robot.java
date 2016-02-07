@@ -1,4 +1,8 @@
-
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
 package com.team1285.frc2016;
 
 import com.team1285.frc2016.autonCommands.NoAuton;
@@ -100,7 +104,6 @@ public class Robot extends IterativeRobot {
 				Math.round(drive.getLeftEncoderDist()));
 		SmartDashboard.putNumber("Right Drive Encoder", 
 				Math.round(drive.getRightEncoderDist()));
-		SmartDashboard.putNumber("Wedge Potentiometer", 
-				Math.round(wedge.getWedgeSetpoint()));
+		
 	}
 }

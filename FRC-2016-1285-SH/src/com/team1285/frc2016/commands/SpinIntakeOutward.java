@@ -1,30 +1,35 @@
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
+
 package com.team1285.frc2016.commands;
 
 import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SpinIntakeOutward extends Command{
+public class SpinIntakeOutward extends Command {
 
-	public SpinIntakeOutward(){
+	public SpinIntakeOutward() {
 		requires(Robot.intake);
 	}
-	
-	
+
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void execute() {
-		if(Robot.oi.getToolRightTrigger()){
+		if (Robot.oi.getToolRightTrigger()) {
 			Robot.intake.intakeForward();
-		}else{
+		} else {
 			Robot.intake.intakeStop();
 		}
-		
+
 	}
 
 	@Override
@@ -36,13 +41,13 @@ public class SpinIntakeOutward extends Command{
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+ * This information contained herein may not be used in whole or in part without the
+ * express written consent of the Rick Hansen Robotics, Canada.
+ */
 package com.team1285.frc2016;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -9,8 +14,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * Used with the Logitech F310.
  * 
  * @author Kaveesha Siribaddana
- * @since
- * 
+ *  
  */
 public class OI {
 
