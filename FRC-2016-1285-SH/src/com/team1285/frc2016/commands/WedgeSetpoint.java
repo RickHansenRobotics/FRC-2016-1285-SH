@@ -12,26 +12,36 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WedgeSetpoint extends Command {
 
 	private double setpoint;
-	
+
 	public WedgeSetpoint(double setpoint) {
 		this.setpoint = setpoint;
 		requires(Robot.wedge);
 	}
 
 	protected void initialize() {
-		
+
 	}
 
 	protected void execute() {
-		Robot.wedge.runWedge(Robot.oi.getToolLeftY());
-    	
-    			
+		if (Robot.oi.getToolYButton()) {
+			Robot.wedge.runWedge(Robot.oi.getToolLeftY() * 0.3);
+		} else {
+			if (Robot.oi.getToolRightBumper()) {
+
+			} else if (Robot.oi.getToolLeftBumper()) {
+
+			}
+		}
+
+		// Robot.wedge.runRightWedge(-Robot.oi.getToolLeftY());
+		// Robot.wedge.runLeftWedge(-Robot.oi.getToolLeftY());
+
 	}
 
 	protected boolean isFinished() {
 		return false;
-		
-		//return Robot.wedge.onTarget();
+
+		// return Robot.wedge.onTarget();
 	}
 
 	protected void end() {

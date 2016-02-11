@@ -65,8 +65,8 @@ public class ElectricalConstants {
 	// *************************** WEDGE MOTORS *********************************
 	// **************************************************************************
 
-		public static final int LEFT_WEDGE_MOTOR = 7;
-		public static final int RIGHT_WEDGE_MOTOR = 8;
+		public static final int LEFT_WEDGE_MOTOR = 5;
+		public static final int RIGHT_WEDGE_MOTOR = 6;
 
 	// **************************************************************************
 	// ***************************** WEDGE POT **********************************
