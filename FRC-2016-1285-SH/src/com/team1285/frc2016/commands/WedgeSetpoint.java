@@ -7,30 +7,43 @@ package com.team1285.frc2016.commands;
 
 import com.team1285.frc2016.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class WedgeSetpoint extends Command {
 
 	private double setpoint;
+	private double startpoint = 0;
+	private boolean started = false;
+
+	Timer timer;
 
 	public WedgeSetpoint(double setpoint) {
 		this.setpoint = setpoint;
+		timer = new Timer();
 		requires(Robot.wedge);
 	}
 
 	protected void initialize() {
-
+		timer.start();
 	}
 
 	protected void execute() {
 		if (Robot.oi.getToolYButton()) {
 			Robot.wedge.runWedge(Robot.oi.getToolLeftY() * 0.3);
 		} else {
-			if (Robot.oi.getToolRightBumper()) {
-
-			} else if (Robot.oi.getToolLeftBumper()) {
-
+			if (Robot.oi.getToolRightBumper() && !started) {
+				Robot.wedge.setWedgeAngle(startpoint += 50, 8);
+				timer.reset();
+				started = true;
+			} else if (Robot.oi.getToolLeftBumper() && !started) {
+				Robot.wedge.setWedgeAngle(startpoint -= 50, 8);
+				timer.reset();
+				started = true;
 			}
+
+			if (timer.get() >= 500)
+				started = false;
 		}
 
 		// Robot.wedge.runRightWedge(-Robot.oi.getToolLeftY());

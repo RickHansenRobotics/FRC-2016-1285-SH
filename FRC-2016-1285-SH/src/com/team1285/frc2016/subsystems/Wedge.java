@@ -61,7 +61,7 @@ public class Wedge extends Subsystem {
 	}
 
 	/** Sets wedge position using setpoints */
-	public void setWedgePosition(double angle, double speed) {
+	public void setWedgeAngle(double angle, double speed) {
 		// Set up sensor methods
 		double output = wedgePID.calcPID(angle, wedgePot.get(), 5);
 		runWedge(output * speed);
