@@ -7,7 +7,7 @@ package com.team1285.frc2016.subsystems;
 
 import com.team1285.frc2016.ElectricalConstants;
 import com.team1285.frc2016.commands.IntakeOff;
-
+import com.team1285.frc2016.commands.SpinIntake;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -48,7 +48,7 @@ public class Intake extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeOff());
+		setDefaultCommand(new SpinIntake());
 
 	}
 

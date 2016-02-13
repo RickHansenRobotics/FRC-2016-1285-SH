@@ -9,26 +9,28 @@ import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SpinIntakeInward extends Command{
+public class SpinIntake extends Command {
 
-	public SpinIntakeInward(){
+	public SpinIntake() {
 		requires(Robot.intake);
 	}
-	
+
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void execute() {
-		if(Robot.oi.getToolRightBumper()){
+		if (Robot.oi.getToolRightTrigger()) {
 			Robot.intake.intakeReverse();
-		}else{
+		} else if (Robot.oi.getToolLeftTrigger()) {
+			Robot.intake.intakeForward();
+		} else {
 			Robot.intake.intakeStop();
-		}	
-		
+		}
+
 	}
 
 	@Override
@@ -40,13 +42,13 @@ public class SpinIntakeInward extends Command{
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

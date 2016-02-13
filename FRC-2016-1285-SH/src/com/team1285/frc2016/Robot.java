@@ -104,6 +104,8 @@ public class Robot extends IterativeRobot {
 				Math.round(drive.getLeftEncoderDist()));
 		SmartDashboard.putNumber("Right Drive Encoder", 
 				Math.round(drive.getRightEncoderDist()));
+		SmartDashboard.putNumber("Wedge Pot Value",
+				Math.round(wedge.wedgePot.get()));
 		
 	}
 }

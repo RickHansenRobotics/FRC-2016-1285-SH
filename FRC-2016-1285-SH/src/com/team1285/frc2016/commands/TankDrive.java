@@ -36,10 +36,10 @@ public class TankDrive extends Command {
 		 * is pressed.
 		 */
 		if (Robot.oi.getDriveLeftBumper()) {
-			Robot.drive.runLeftDrive((Robot.oi.getDriveLeftY()));
+			Robot.drive.runLeftDrive(-(Robot.oi.getDriveLeftY()));
 			Robot.drive.runRightDrive((Robot.oi.getDriveRightY()));
 		} else {
-			Robot.drive.runLeftDrive(0.8 * (Robot.oi.getDriveLeftY()));
+			Robot.drive.runLeftDrive(-0.8 * (Robot.oi.getDriveLeftY()));
 			Robot.drive.runRightDrive(0.8 * (Robot.oi.getDriveRightY()));
 		}
 

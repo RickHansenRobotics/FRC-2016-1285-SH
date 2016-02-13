@@ -29,22 +29,23 @@ public class WedgeSetpoint extends Command {
 	}
 
 	protected void execute() {
-		if (Robot.oi.getToolYButton()) {
-			Robot.wedge.runWedge(Robot.oi.getToolLeftY() * 0.3);
-		} else {
-			if (Robot.oi.getToolRightBumper() && !started) {
-				Robot.wedge.setWedgeAngle(startpoint += 50, 8);
-				timer.reset();
-				started = true;
-			} else if (Robot.oi.getToolLeftBumper() && !started) {
-				Robot.wedge.setWedgeAngle(startpoint -= 50, 8);
-				timer.reset();
-				started = true;
-			}
-
-			if (timer.get() >= 500)
-				started = false;
-		}
+		Robot.wedge.runWedge(-(Robot.oi.getToolLeftY() * 0.5));
+//		if (Robot.oi.getToolYButton()) {
+//			Robot.wedge.runWedge(Robot.oi.getToolLeftY() * 0.3);
+//		} else {
+//			if (Robot.oi.getToolRightBumper() && !started) {
+//				Robot.wedge.setWedgeAngle(startpoint += 50, 8);
+//				timer.reset();
+//				started = true;
+//			} else if (Robot.oi.getToolLeftBumper() && !started) {
+//				Robot.wedge.setWedgeAngle(startpoint -= 50, 8);
+//				timer.reset();
+//				started = true;
+//			}
+//
+//			if (timer.get() >= 500)
+//				started = false;
+//		}
 
 		// Robot.wedge.runRightWedge(-Robot.oi.getToolLeftY());
 		// Robot.wedge.runLeftWedge(-Robot.oi.getToolLeftY());
