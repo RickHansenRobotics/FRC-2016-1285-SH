@@ -32,10 +32,10 @@ public class TankDrive extends Command {
 	 */
 	protected void execute() {
 		/**
-		 * This statement will run the drive at 80% of speed unless Left Bumper 
+		 * This statement will run the drive at 80% of speed unless Right Bumper 
 		 * is pressed.
 		 */
-		if (Robot.oi.getDriveLeftBumper()) {
+		if (Robot.oi.getDriveRightBumper()) {
 			Robot.drive.runLeftDrive(-(Robot.oi.getDriveLeftY()));
 			Robot.drive.runRightDrive((Robot.oi.getDriveRightY()));
 		} else {

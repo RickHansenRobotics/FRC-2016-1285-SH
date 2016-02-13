@@ -26,8 +26,8 @@ public class HybridArcadeDrive extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.drive.runLeftDrive(leftPower);
-		Robot.drive.runRightDrive(rightPower);
+		Robot.drive.runLeftDrive(Robot.oi.getDriveLeftY() + Robot.oi.getDriveRightX());
+		Robot.drive.runRightDrive(Robot.oi.getDriveLeftY() - Robot.oi.getDriveRightX());
 
 	}
 
