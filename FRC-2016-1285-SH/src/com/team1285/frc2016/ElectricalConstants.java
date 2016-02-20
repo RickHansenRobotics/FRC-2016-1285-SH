@@ -6,7 +6,7 @@
 package com.team1285.frc2016;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * The ElectricalConstants is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
@@ -41,9 +41,9 @@ public class ElectricalConstants {
 	// **************************************************************************
 	
 		/** wheel radius in inches */
-		public static final int driveWheelRadius = 8;
+		public static final int driveWheelRadius = 4;
 		/** encoder pulse per rotation */															
-		public static final int drivePulsePerRotation = 128;
+		public static final int drivePulsePerRotation = 265;
 		/** ratio between wheel and encoder */
 		public static final double driveGearRatio = 10.71;
 		/** pulse per rotation gear ratio */
@@ -72,6 +72,6 @@ public class ElectricalConstants {
 	// ***************************** WEDGE POT **********************************
 	// **************************************************************************
 
-		public static final int WEDGE_POT = 5;
+		public static final int WEDGE_POT = 0;
 
 }

@@ -55,9 +55,10 @@ public class PIDController {
         error = setPoint - currentValue;
         
         if(Math.abs(error) <= epsilon){
-        	error = 0;
         	atTarget = true;
         }
+        else 
+        	atTarget = false;
         
         //P 
         pOut = pGain * error;

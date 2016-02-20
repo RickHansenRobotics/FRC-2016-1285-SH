@@ -8,6 +8,7 @@ package com.team1285.frc2016;
 import com.team1285.frc2016.autonCommands.NoAuton;
 import com.team1285.frc2016.autonCommands.NormalAuton;
 import com.team1285.frc2016.autonCommands.SpyZoneAuton;
+import com.team1285.frc2016.commands.WedgeSetpoint;
 import com.team1285.frc2016.subsystems.Drivetrain;
 import com.team1285.frc2016.subsystems.Intake;
 import com.team1285.frc2016.subsystems.Wedge;
@@ -65,7 +66,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		System.out.println("Teleop Init Works");
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -88,8 +89,14 @@ public class Robot extends IterativeRobot {
 		
 		Scheduler.getInstance().run();
 		updateSmartDashboard();
-
-			
+		System.out.println("Teleop" + Math.round(wedge.getWedgePot()));
+		
+		if(oi.getToolAButton())	
+			new WedgeSetpoint(140,7).start();
+		else if(oi.getToolBButton())
+			new WedgeSetpoint(190,7).start();
+		else if(oi.getToolYButton())
+			new WedgeSetpoint(360,7).start();
 	}
 
 	/**
@@ -100,12 +107,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void updateSmartDashboard() {
-		SmartDashboard.putNumber("Left Drive Encoder", 
-				Math.round(drive.getLeftEncoderDist()));
-		SmartDashboard.putNumber("Right Drive Encoder", 
-				Math.round(drive.getRightEncoderDist()));
-		SmartDashboard.putNumber("Wedge Pot Value",
-				Math.round(wedge.wedgePot.get()));
+		SmartDashboard.putNumber("Left Drive Encoder", drive.getLeftEncoderDist());				
+		SmartDashboard.putNumber("Right Drive Encoder", drive.getRightEncoderDist());
+		SmartDashboard.putNumber("Wedge Pot Value", wedge.getWedgePot());
 		
 	}
 }
