@@ -116,9 +116,7 @@ public class Robot extends IterativeRobot {
 			new WedgeSetpoint(940, 30).start();
 		} else if (Robot.oi.getToolAButton()) {
 			new WedgeSetpoint(1064, 30).start();
-		} else {
-			Robot.wedge.runWedge(-(Robot.oi.getToolRightY()));
-		}
+		} 
 
 	}
 

@@ -4,22 +4,22 @@ import com.team1285.frc2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class WedgeWithJoy extends Command{
+public class WedgeWithJoy extends Command {
 
 	public WedgeWithJoy() {
 		requires(Robot.wedge);
 	}
+
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void execute() {
 		Robot.wedge.runWedge(-(Robot.oi.getToolRightY()));
-		
-		System.out.println(Robot.oi.getToolRightY() );
+
 	}
 
 	@Override
@@ -31,13 +31,13 @@ public class WedgeWithJoy extends Command{
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
