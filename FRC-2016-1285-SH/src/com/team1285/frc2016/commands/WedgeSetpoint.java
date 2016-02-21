@@ -20,7 +20,7 @@ public class WedgeSetpoint extends Command {
 	Timer timer;
 
 	public WedgeSetpoint(double setpoint, double time) {
-		
+
 		this.setpoint = setpoint;
 		this.time = time;
 		timer = new Timer();
@@ -33,29 +33,25 @@ public class WedgeSetpoint extends Command {
 	}
 
 	protected void execute() {
-		
-		 /*if (Robot.oi.getToolYButton()) {
-		 Robot.wedge.runWedge(Robot.oi.getToolLeftY() * 0.3);
-		 } else {
-		 if (Robot.oi.getToolRightBumper() && !started) {
-		 Robot.wedge.setWedgeAngle(startpoint += 50, 8);
-		 timer.reset();
-		 started = true;
-		 } else if (Robot.oi.getToolLeftBumper() && !started) {
-		 Robot.wedge.setWedgeAngle(startpoint -= 50, 8);
-		 timer.reset();
-		 started = true;
-		 }
-		
-		 if (timer.get() >= 500)
-		 started = false;
-		}*/
-		
+
+		/*
+		 * if (Robot.oi.getToolYButton()) {
+		 * Robot.wedge.runWedge(Robot.oi.getToolLeftY() * 0.3); } else { if
+		 * (Robot.oi.getToolRightBumper() && !started) {
+		 * Robot.wedge.setWedgeAngle(startpoint += 50, 8); timer.reset();
+		 * started = true; } else if (Robot.oi.getToolLeftBumper() && !started)
+		 * { Robot.wedge.setWedgeAngle(startpoint -= 50, 8); timer.reset();
+		 * started = true; }
+		 * 
+		 * if (timer.get() >= 500) started = false; }
+		 */
+	
+
 		Robot.wedge.setWedgeAngle(setpoint, 1);
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 
 		// return Robot.wedge.onTarget();
 	}

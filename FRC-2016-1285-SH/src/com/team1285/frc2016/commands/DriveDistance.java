@@ -12,25 +12,28 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveDistance extends Command {
 
 	private double distance;
-	private double setAngle;
+	
 	private double speed;
+	private double timeOut;
 
-	public DriveDistance(double distance, double speed, double setAngle) {
+	public DriveDistance(double distance, double speed, double timeOut) {
 		requires(Robot.drive);
 		this.distance = distance;
-		this.setAngle = setAngle;
+		
 		this.speed = speed;
+		this.timeOut = timeOut;
+				
 	}
 
 	@Override
 	protected void initialize() {
 		Robot.drive.reset();
-		setTimeout(setAngle);
+		setTimeout(timeOut);
 	}
 
 	@Override
 	protected void execute() {
-		Robot.drive.driveStraight(distance, speed, setAngle);
+		Robot.drive.driveStraight(distance, speed, timeOut);
 	}
 
 	@Override
