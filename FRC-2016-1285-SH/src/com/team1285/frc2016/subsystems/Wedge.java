@@ -16,9 +16,10 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/** 
- * The subsystem that is used for the wedge actuation of the robot. It runs the 2
- * motors in the wedge as well as reads the potentiometer values from the motors.
+/**
+ * The subsystem that is used for the wedge actuation of the robot. It runs the
+ * 2 motors in the wedge as well as reads the potentiometer values from the
+ * motors.
  * 
  * @author Kaveesha
  */
@@ -65,9 +66,17 @@ public class Wedge extends Subsystem {
 		double output = wedgePID.calcPID(angle, getWedgePot(), 5);
 		runWedge(-output * speed);
 	}
-	
-	public double getWedgePot(){
-		return wedgePot.getVoltage()/5*1080;
+
+	public double getWedgePot() {
+		return wedgePot.getVoltage() / 5 * 1080;
+	}
+
+	public boolean onTarget(double target, double tolerance) {
+		if (target - tolerance <= getWedgePot() && target + tolerance >= getWedgePot()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

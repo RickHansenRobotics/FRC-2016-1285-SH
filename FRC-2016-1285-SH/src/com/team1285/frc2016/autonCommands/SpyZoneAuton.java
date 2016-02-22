@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SpyZoneAuton extends CommandGroup {
 
 	public SpyZoneAuton() {
-		addSequential(new DriveDistance(100, 0.8, 3));
-		addSequential(new WedgeSetpoint(270,8));
+		addSequential(new DriveDistance(120, 0.8, 3));
+		addSequential(new WedgeSetpoint(784,8));
 		addSequential(new AutonOuttake());
-		addSequential(new DriveDistance(-100, 0.8, 4));
+		addSequential(new DriveDistance(12, 0.8, 4));
 	}
 
 }

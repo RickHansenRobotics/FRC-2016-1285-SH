@@ -51,8 +51,12 @@ public class WedgeSetpoint extends Command {
 	}
 
 	protected boolean isFinished() {
-		return false;
-
+		if(isTimedOut()){
+			return true;
+		} else {
+			return Robot.wedge.onTarget(setpoint, 10);
+		}
+		
 		// return Robot.wedge.onTarget();
 	}
 
