@@ -13,6 +13,8 @@ import com.team1285.frc2016.utilities.PIDController;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -24,23 +26,50 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 
+	// Drive Talons
 	CANTalon leftDriveFront;
 	CANTalon leftDriveBack;
-
 	CANTalon rightDriveFront;
 	CANTalon rightDriveBack;
 
+	// Encoder
 	Encoder leftDriveEncoder;
 	Encoder rightDriveEncoder;
 
-	Nav6 nav6;
+	// Gyro
+	private Nav6 gyro;
+	private SerialPort serialPort;
 
+	// PID
 	public PIDController drivePID;
 	public PIDController gyroPID;
 
 	public double cogx = 0;
 
 	public Drivetrain() {
+
+		try {
+			serialPort = new SerialPort(57600, SerialPort.Port.kOnboard);
+
+			// You can add a second parameter to modify the
+			// update rate (in hz) from 4 to 100. The default is 100.
+			// If you need to minimize CPU load, you can set it to a
+			// lower value, as shown here, depending upon your needs.
+
+			// You can also use the IMUAdvanced class for advanced
+			// features.
+
+			byte update_rate_hz = 50;
+			gyro = new Nav6(serialPort, update_rate_hz);
+
+			if (!gyro.isCalibrating()) {
+				Timer.delay(0.3);
+				gyro.zeroYaw();
+			}
+		} catch (Exception e) {
+			gyro = null;
+		}
+
 		leftDriveFront = new CANTalon(ElectricalConstants.LEFT_DRIVE_FRONT);
 		leftDriveBack = new CANTalon(ElectricalConstants.LEFT_DRIVE_BACK);
 
@@ -194,7 +223,7 @@ public class Drivetrain extends Subsystem {
 	 * @return Returns true or false depending on the state of the gyro
 	 */
 	public boolean gyroConnected() {
-		return nav6.isConnected();
+		return gyro.isConnected();
 	}
 
 	/**
@@ -203,7 +232,7 @@ public class Drivetrain extends Subsystem {
 	 * @return Returns true or false depending on the state of the gyro
 	 */
 	public boolean gyroCalibrating() {
-		return nav6.isCalibrating();
+		return gyro.isCalibrating();
 	}
 
 	/**
@@ -212,7 +241,7 @@ public class Drivetrain extends Subsystem {
 	 * @return Returns YAW
 	 */
 	public double getYaw() {
-		return nav6.getYaw();
+		return gyro.getYaw();
 	}
 
 	/**
@@ -221,7 +250,7 @@ public class Drivetrain extends Subsystem {
 	 * @return Returns PITCH
 	 */
 	public double getPitch() {
-		return nav6.getPitch();
+		return gyro.getPitch();
 	}
 
 	/**
@@ -230,7 +259,7 @@ public class Drivetrain extends Subsystem {
 	 * @return Returns ROLL
 	 */
 	public double getRoll() {
-		return nav6.getRoll();
+		return gyro.getRoll();
 	}
 
 	/**
@@ -239,14 +268,14 @@ public class Drivetrain extends Subsystem {
 	 * @return Returns compass heading
 	 */
 	public double getCompassHeading() {
-		return nav6.getCompassHeading();
+		return gyro.getCompassHeading();
 	}
 
 	/**
 	 * Resets the gyro back to zero
 	 */
 	public void resetGyro() {
-		nav6.zeroYaw();
+		gyro.zeroYaw();
 	}
 
 }
