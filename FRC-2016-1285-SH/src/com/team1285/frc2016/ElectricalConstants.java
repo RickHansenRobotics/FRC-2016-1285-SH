@@ -20,21 +20,21 @@ public class ElectricalConstants {
 	// **************************** DRIVE MOTORS*********************************
 	// **************************************************************************
 
-		public static final int LEFT_DRIVE_FRONT = 1;
-		public static final int LEFT_DRIVE_BACK = 3;
+		public static final int LEFT_DRIVE_FRONT                            = 1;
+		public static final int LEFT_DRIVE_BACK                             = 3;
 
-		public static final int RIGHT_DRIVE_FRONT = 2;
-		public static final int RIGHT_DRIVE_BACK = 4;
+		public static final int RIGHT_DRIVE_FRONT                           = 2;
+		public static final int RIGHT_DRIVE_BACK                            = 4;
 
 	// **************************************************************************
 	// ************************** DRIVE ENCODERS ********************************
 	// **************************************************************************
 
-		public static final int LEFT_DRIVE_ENCODER_A = 0;
-		public static final int LEFT_DRIVE_ENCODER_B = 1;
+		public static final int LEFT_DRIVE_ENCODER_A                        = 0;
+		public static final int LEFT_DRIVE_ENCODER_B                        = 1;
 
-		public static final int RIGHT_DRIVE_ENCODER_A = 2;
-		public static final int RIGHT_DRIVE_ENCODER_B = 3;
+		public static final int RIGHT_DRIVE_ENCODER_A                       = 2;
+		public static final int RIGHT_DRIVE_ENCODER_B                       = 3;
 
 	// **************************************************************************
 	// ********************* DRIVE ENCODER CONSTANTS ****************************
@@ -58,20 +58,29 @@ public class ElectricalConstants {
 	// ************************** INTAKE MOTORS *********************************
 	// **************************************************************************
 
-		public static final int LEFT_INTAKE_MOTOR = 1;
-		public static final int RIGHT_INTAKE_MOTOR = 2;
+		public static final int LEFT_INTAKE_MOTOR                           = 1;
+		public static final int RIGHT_INTAKE_MOTOR                          = 2;
 
 	// **************************************************************************
 	// *************************** WEDGE MOTORS *********************************
 	// **************************************************************************
 
-		public static final int LEFT_WEDGE_MOTOR = 5;
-		public static final int RIGHT_WEDGE_MOTOR = 6;
+		public static final int LEFT_WEDGE_MOTOR                            = 5;
+		public static final int RIGHT_WEDGE_MOTOR                           = 6;
 
 	// **************************************************************************
 	// ***************************** WEDGE POT **********************************
 	// **************************************************************************
 
-		public static final int WEDGE_POT = 5;
+		public static final int WEDGE_POT                                   = 5;
+		
+	// **************************************************************************
+	// *************************** HANGER MOTORS ********************************
+	// **************************************************************************
 
+		public static final int LEFT_HANGER_MOTOR1                          = 7;
+		public static final int LEFT_HANGER_MOTOR2                          = 8;
+		
+		public static final int RIGHT_HANGER_MOTOR1                         = 9;
+		public static final int RIGHT_HANGER_MOTOR2                         = 10;
 }
