@@ -13,7 +13,10 @@ import com.team1285.frc2016.utilities.PIDController;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The subsystem that is used for the drive train of the robot. It runs the 4
@@ -33,7 +36,8 @@ public class Drivetrain extends Subsystem {
 	Encoder leftDriveEncoder;
 	Encoder rightDriveEncoder;
 
-	Nav6 nav6;
+	private SerialPort serialPort;
+	private Nav6 nav6;
 
 	public PIDController drivePID;
 	public PIDController gyroPID;
@@ -41,6 +45,21 @@ public class Drivetrain extends Subsystem {
 	public double cogx = 0;
 
 	public Drivetrain() {
+
+		try {
+			serialPort = new SerialPort(57600, SerialPort.Port.kOnboard);
+
+			byte update_rate_hz = 50;
+			nav6 = new Nav6(serialPort, update_rate_hz);
+
+			if (!nav6.isCalibrating()) {
+				Timer.delay(0.3);
+				nav6.zeroYaw();
+			}
+		} catch (Exception e) {
+			nav6 = null;
+		}
+
 		leftDriveFront = new CANTalon(ElectricalConstants.LEFT_DRIVE_FRONT);
 		leftDriveBack = new CANTalon(ElectricalConstants.LEFT_DRIVE_BACK);
 
@@ -83,16 +102,17 @@ public class Drivetrain extends Subsystem {
 		return (getLeftEncoderDist() + getRightEncoderDist()) / 2;
 	}
 
-	/** Drive goes in a straight line */
-	public void driveStraight(double setPoint, double speed, double setAngle) {
+	/**
+	 * Drive goes in a straight line
+	 * 
+	 * @param i
+	 */
+	public void driveStraight(double setPoint, double speed, double setAngle, double epsilon) {
+		double output = drivePID.calcPID(setPoint, getAverageDistance(), epsilon);
+		double angle = gyroPID.calcPID(setAngle, getYaw(), epsilon);
 
-		drivePID.calcPID(setPoint, getAverageDistance(), 5);
-		gyroPID.calcPID(setAngle, getYaw(), 5);
-		double output = drivePID.calcPID(setPoint, getAverageDistance(), 1);
-		double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
-
-		runLeftDrive(output + angle * speed);
-		runRightDrive(-output + angle * speed);
+		runLeftDrive((output + angle) * speed);
+		runRightDrive((-output + angle) * speed);
 	}
 
 	public void turnDrive(double setAngle, double speed) {

@@ -6,45 +6,59 @@
 package com.team1285.frc2016.autonCommands;
 
 import com.team1285.frc2016.Robot;
+import com.team1285.frc2016.utilities.TheoryCurve;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonTurn extends Command{
-
-	private double angle;
-	private double speed;
-	private double timeOut;
+	TheoryCurve curve;
+	int counter;
+	double distance;
+	double timeOut;
+	double speed;
 	
-    public AutonTurn(double angle, double speed, double timeOut) {
-    	this.angle = angle;
-    	this.speed = speed;
-    	this.timeOut = timeOut;
-    	requires(Robot.drive);
+	public AutonTurn(String startPoint, String controlPoint1, String controlPoint2, String endPoint, double timeOut, double speed)
+    {
+		curve = new TheoryCurve(startPoint, controlPoint1, controlPoint2, endPoint);
+		distance = curve.findDistance();
+		this.timeOut = timeOut;
+		this.speed = speed;
+		requires(Robot.drive);
     }
+    
+    public AutonTurn(int i, double d, int j) {
+		// TODO Auto-generated constructor stub
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
+	protected void initialize()
+    {
+    	counter = 0;
+    	setTimeout(timeOut);
+        Robot.drive.reset();
     }
+    
+    protected void execute()
+    {
+    	if(Robot.drive.getAverageDistance() > curve.findHypotenuse(counter) && counter < 19)
+    		counter++;
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.drive.turnDrive(angle, speed);
+    	Robot.drive.driveStraight(distance, speed, curve.findAngle(counter), 1);
     }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return true; //angle == Robot.drive.getYaw() || isTimedOut();
+    
+    protected boolean isFinished()
+    {
+        return Robot.drive.getAverageDistance() == distance || 
+        		isTimedOut();
     }
-
-    // Called once after isFinished returns true
-    protected void end() {
+    
+    protected void end()
+    {
     	Robot.drive.runLeftDrive(0);
-    	Robot.drive.runRightDrive(0);
+        Robot.drive.runRightDrive(0);
     }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
+    
+    protected void interrupted()
+    {
+        
     }
-
 }

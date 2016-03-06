@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		drive.reset();
 		autonomousCommand = (Command) autoChooser.getSelected();
 		autonomousCommand.start();
 	}

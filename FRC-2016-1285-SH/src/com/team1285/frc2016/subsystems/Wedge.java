@@ -1,5 +1,4 @@
-/**
- * Copyright (c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
+/**(c) 2016, Rick Hansen Robotics, Canada. All rights reserved.
  * This information contained herein may not be used in whole or in part without the
  * express written consent of the Rick Hansen Robotics, Canada.
  */
@@ -71,8 +70,8 @@ public class Wedge extends Subsystem {
 		return wedgePot.getVoltage() / 5 * 1080;
 	}
 
-	public boolean onTarget(double target, double tolerance) {
-		if (target - tolerance <= getWedgePot() && target + tolerance >= getWedgePot()) {
+	public boolean onTarget(double target) {
+		if (target - 10 <= getWedgePot() && target + 10 >= getWedgePot()) {
 			return true;
 		} else {
 			return false;

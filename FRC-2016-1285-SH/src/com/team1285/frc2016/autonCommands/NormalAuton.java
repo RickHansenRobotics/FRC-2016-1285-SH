@@ -5,7 +5,6 @@
  */
 package com.team1285.frc2016.autonCommands;
 
-import com.team1285.frc2016.commands.DriveDistance;
 import com.team1285.frc2016.commands.SpinIntake;
 import com.team1285.frc2016.commands.WedgeSetpoint;
 
@@ -14,11 +13,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NormalAuton extends CommandGroup {
 
 	public NormalAuton() {
-		addSequential(new DriveDistance( 144, 0.8,  5));
-		addSequential(new AutonTurn( 45, 0.8, 0));
-		addSequential(new DriveDistance( 45, 0.8,5));
+		addSequential(new DriveDistance(144, 0.8, 5, 1));
+		addSequential(new AutonTurn(45, 0.8, 0));
+		addSequential(new DriveDistance(45, 0.8, 5, 1));
 		addParallel(new WedgeSetpoint(2, 7));
 		addSequential(new AutonOuttake());
 	}
-	
+
 }
