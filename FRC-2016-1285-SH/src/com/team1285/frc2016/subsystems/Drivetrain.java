@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem {
 
 		try {
 			serialPort = new SerialPort(57600, SerialPort.Port.kOnboard);
-
+			System.out.println("Serial Port");
 			byte update_rate_hz = 50;
 			nav6 = new Nav6(serialPort, update_rate_hz);
 
@@ -57,6 +57,8 @@ public class Drivetrain extends Subsystem {
 				nav6.zeroYaw();
 			}
 		} catch (Exception e) {
+			System.out.println("Nav6 not connected");
+			e.printStackTrace();
 			nav6 = null;
 		}
 

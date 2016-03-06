@@ -39,11 +39,11 @@ public class Robot extends IterativeRobot {
 	CameraServer server;
 
 	public Robot() {
-		server = CameraServer.getInstance();
+		/*server = CameraServer.getInstance();
 		server.setQuality(25);
 		// the camera name (ex "cam0") can be found through the roborio web
 		// interface
-		server.startAutomaticCapture("cam0");
+		server.startAutomaticCapture("cam0");*/
 	}
 
 	// Command autonomousCommand;
@@ -135,6 +135,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Wedge P Value", NumberConstants.pWedge);
 		SmartDashboard.putNumber("Wedge I Value", NumberConstants.iWedge);
 		SmartDashboard.putNumber("Wedge D Value", NumberConstants.dWedge);
+		//SmartDashboard.putNumber("Gyro", drive.getYaw());
 
 	}
 }
