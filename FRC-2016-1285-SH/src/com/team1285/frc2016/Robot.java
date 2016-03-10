@@ -9,6 +9,7 @@ import com.team1285.frc2016.autonCommands.NoAuton;
 import com.team1285.frc2016.autonCommands.NormalAuton;
 import com.team1285.frc2016.autonCommands.SpyZoneAuton;
 import com.team1285.frc2016.subsystems.Drivetrain;
+import com.team1285.frc2016.subsystems.Hanger;
 import com.team1285.frc2016.subsystems.Intake;
 import com.team1285.frc2016.subsystems.Wedge;
 
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
     public static final Drivetrain drive = new Drivetrain();
     public static final Intake intake = new Intake();
     public static final Wedge wedge = new Wedge();
+    public static final Hanger hanger = new Hanger();
    
 	//Command autonomousCommand;
 	public SendableChooser autoChooser;

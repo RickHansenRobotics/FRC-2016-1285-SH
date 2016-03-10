@@ -78,9 +78,9 @@ public class ElectricalConstants {
 	// *************************** HANGER MOTORS ********************************
 	// **************************************************************************
 
-		public static final int LEFT_HANGER_MOTOR1                          = 7;
-		public static final int LEFT_HANGER_MOTOR2                          = 8;
+		public static final int LEFT_HANGER_MOTOR                           = 7;
+		public static final int RIGHT_HANGER_MOTOR                          = 8;
 		
-		public static final int RIGHT_HANGER_MOTOR1                         = 9;
-		public static final int RIGHT_HANGER_MOTOR2                         = 10;
+		public static final int TAPE_MEASURE_MOTOR                          = 9;
+		
 }
