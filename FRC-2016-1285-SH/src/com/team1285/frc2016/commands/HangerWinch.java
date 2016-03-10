@@ -22,7 +22,7 @@ public class HangerWinch extends Command {
 			Robot.hanger.runHanger(1);
 		} else if (Robot.oi.getToolLeftTrigger()) {
 			Robot.hanger.runHanger(-1);
-		} else {
+		} else{
 			Robot.hanger.runHanger(0);
 		}
 
