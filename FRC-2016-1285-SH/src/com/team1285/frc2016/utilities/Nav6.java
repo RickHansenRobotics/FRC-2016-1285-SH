@@ -13,8 +13,6 @@ package com.team1285.frc2016.utilities;
 
 import java.util.Arrays;
 
-import com.team1285.frc2016.utilities.IMUProtocol;
-
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SensorBase;
@@ -470,7 +468,7 @@ public class Nav6 extends SensorBase implements PIDSource, LiveWindowSendable, R
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
 		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override

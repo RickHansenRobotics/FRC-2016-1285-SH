@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The subsystem that is used for the drive train of the robot. It runs the 4
@@ -36,9 +37,11 @@ public class Drivetrain extends Subsystem {
 	Encoder leftDriveEncoder;
 	Encoder rightDriveEncoder;
 
+
 	// Gyro
 	private Nav6 gyro;
 	private SerialPort serialPort;
+
 
 	// PID
 	public PIDController drivePID;
@@ -50,6 +53,7 @@ public class Drivetrain extends Subsystem {
 
 		try {
 			serialPort = new SerialPort(57600, SerialPort.Port.kOnboard);
+
 
 			// You can add a second parameter to modify the
 			// update rate (in hz) from 4 to 100. The default is 100.
@@ -68,6 +72,7 @@ public class Drivetrain extends Subsystem {
 			}
 		} catch (Exception e) {
 			gyro = null;
+
 		}
 
 		leftDriveFront = new CANTalon(ElectricalConstants.LEFT_DRIVE_FRONT);
@@ -112,16 +117,17 @@ public class Drivetrain extends Subsystem {
 		return (getLeftEncoderDist() + getRightEncoderDist()) / 2;
 	}
 
-	/** Drive goes in a straight line */
-	public void driveStraight(double setPoint, double speed, double setAngle) {
+	/**
+	 * Drive goes in a straight line
+	 * 
+	 * @param i
+	 */
+	public void driveStraight(double setPoint, double speed, double setAngle, double epsilon) {
+		double output = drivePID.calcPID(setPoint, getAverageDistance(), epsilon);
+		double angle = gyroPID.calcPID(setAngle, getYaw(), epsilon);
 
-		drivePID.calcPID(setPoint, getAverageDistance(), 5);
-		gyroPID.calcPID(setAngle, getYaw(), 5);
-		double output = drivePID.calcPID(setPoint, getAverageDistance(), 1);
-		double angle = gyroPID.calcPID(setAngle, getYaw(), 5);
-
-		runLeftDrive(output + angle * speed);
-		runRightDrive(-output + angle * speed);
+		runLeftDrive((output + angle) * speed);
+		runRightDrive((-output + angle) * speed);
 	}
 
 	public void turnDrive(double setAngle, double speed) {
