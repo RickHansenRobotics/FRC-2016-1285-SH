@@ -1,6 +1,8 @@
 package com.team1285.frc2016.subsystems;
 
 import com.team1285.frc2016.ElectricalConstants;
+import com.team1285.frc2016.commands.HangerWinch;
+import com.team1285.frc2016.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -33,7 +35,7 @@ public class Hanger extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
+		setDefaultCommand(new HangerWinch());
 
 	}
 

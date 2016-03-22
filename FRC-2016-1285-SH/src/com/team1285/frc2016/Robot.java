@@ -5,8 +5,10 @@
  */
 package com.team1285.frc2016;
 
+import com.ni.vision.NIVision.Image;
+import com.team1285.frc2016.autonCommands.DefenceCrossAuton;
 import com.team1285.frc2016.autonCommands.NoAuton;
-import com.team1285.frc2016.autonCommands.NormalAuton;
+import com.team1285.frc2016.autonCommands.ReadyPosAuton;
 import com.team1285.frc2016.autonCommands.SpyZoneAuton;
 import com.team1285.frc2016.commands.WedgeSetpoint;
 import com.team1285.frc2016.subsystems.Drivetrain;
@@ -16,12 +18,12 @@ import com.team1285.frc2016.subsystems.Wedge;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,12 +45,13 @@ public class Robot extends IterativeRobot {
 
 
 	CameraServer server;
-
+	
 	public Robot() {
 		server = CameraServer.getInstance();
 		server.setQuality(25);
 		// the camera name (ex "cam0") can be found through the roborio web
 		// interface
+		
 		server.startAutomaticCapture("cam0");
 	}
 
@@ -65,7 +68,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No Auton", new NoAuton());
-		autoChooser.addObject("Normal Auton", new NormalAuton());
+		autoChooser.addObject("Cross Defence", new DefenceCrossAuton());
+		autoChooser.addObject("Ready Position", new ReadyPosAuton());
 		autoChooser.addObject("SpyZone Auton", new SpyZoneAuton());
 
 		SmartDashboard.putData("auto", autoChooser);
@@ -117,13 +121,13 @@ public class Robot extends IterativeRobot {
 		System.out.println("Teleop" + Math.round(wedge.getWedgePot()));
 
 		if (Robot.oi.getToolYButton()) {
-			new WedgeSetpoint(437, 30).start();
+			new WedgeSetpoint(26, 5).start();
 		} else if (Robot.oi.getToolXButton()) {
-			new WedgeSetpoint(784, 30).start();
+			new WedgeSetpoint(54, 5).start();
 		} else if (Robot.oi.getToolBButton()) {
-			new WedgeSetpoint(940, 30).start();
+			new WedgeSetpoint(155, 5).start();
 		} else if (Robot.oi.getToolAButton()) {
-			new WedgeSetpoint(1064, 30).start();
+			new WedgeSetpoint(360, 5).start();
 		} 
 
 	}

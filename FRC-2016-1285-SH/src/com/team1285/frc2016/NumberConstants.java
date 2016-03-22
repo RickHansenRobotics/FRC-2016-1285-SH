@@ -36,8 +36,8 @@ public class NumberConstants {
     //**************************************************************************
 	
 		
-	public static final double pWedge 									 = 0.667;
-	public static final double iWedge 									 = 0.002;
+	public static final double pWedge 									 = 0.002857;
+	public static final double iWedge 									 = 0.0000952333;
 	public static final double dWedge									 = 0.00;
 	
 	

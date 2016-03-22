@@ -8,6 +8,7 @@ package com.team1285.frc2016.subsystems;
 import com.team1285.frc2016.ElectricalConstants;
 import com.team1285.frc2016.commands.SpinIntake;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,30 +21,30 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem {
 
-	Relay leftIntakeMotor;
-	Relay rightIntakeMotor;
+	CANTalon leftIntakeMotor;
+	CANTalon rightIntakeMotor;
 
 	public Intake() {
-		leftIntakeMotor = new Relay(ElectricalConstants.LEFT_INTAKE_MOTOR);
-		rightIntakeMotor = new Relay(ElectricalConstants.RIGHT_INTAKE_MOTOR);
+		leftIntakeMotor = new CANTalon(ElectricalConstants.LEFT_INTAKE_MOTOR);
+		rightIntakeMotor = new CANTalon(ElectricalConstants.RIGHT_INTAKE_MOTOR);
 	}
 
 	/** Spins Intake rollers to outtake ball */
 	public void outtake() {
-		leftIntakeMotor.set(Relay.Value.kForward);
-		rightIntakeMotor.set(Relay.Value.kReverse);
+		leftIntakeMotor.set(1);
+		rightIntakeMotor.set(-1);
 	}
 
 	/** Spins Intake rollers to intake ball */
 	public void intake() {
-		leftIntakeMotor.set(Relay.Value.kReverse);
-		rightIntakeMotor.set(Relay.Value.kForward);
+		leftIntakeMotor.set(-1);
+		rightIntakeMotor.set(1);
 	}
 
 	/** Stops spinning Intake rollers */
 	public void intakeStop() {
-		leftIntakeMotor.set(Relay.Value.kOff);
-		rightIntakeMotor.set(Relay.Value.kOff);
+		leftIntakeMotor.set(0);
+		rightIntakeMotor.set(0);
 	}
 
 	@Override

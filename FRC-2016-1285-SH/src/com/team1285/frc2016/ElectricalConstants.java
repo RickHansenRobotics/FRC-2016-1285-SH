@@ -58,8 +58,8 @@ public class ElectricalConstants {
 	// ************************** INTAKE MOTORS *********************************
 	// **************************************************************************
 
-		public static final int LEFT_INTAKE_MOTOR                           = 1;
-		public static final int RIGHT_INTAKE_MOTOR                          = 2;
+		public static final int LEFT_INTAKE_MOTOR                           = 7;
+		public static final int RIGHT_INTAKE_MOTOR                          = 8;
 
 	// **************************************************************************
 	// *************************** WEDGE MOTORS *********************************
@@ -77,11 +77,11 @@ public class ElectricalConstants {
 	// *************************** HANGER MOTORS ********************************
 	// **************************************************************************
 
-		
-
-		public static final int LEFT_HANGER_MOTOR                           = 7;
-		public static final int RIGHT_HANGER_MOTOR                          = 8;
-		
 		public static final int TAPE_MEASURE_MOTOR                          = 9;
+
+		public static final int LEFT_HANGER_MOTOR                           = 10;
+		public static final int RIGHT_HANGER_MOTOR                          = 11;
+//		
+//		
 		
 }
