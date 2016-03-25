@@ -26,7 +26,9 @@ public class HangerWinch extends Command {
 			Robot.hanger.runHanger(0);
 
 		}
-		Robot.hanger.runTapeMeasure(-0.25*(Robot.oi.getToolLeftY()));
+		// going up (if getToolLeftY is positive, 0.5), going down (if getToolLeftY is negative, 0.25)
+		// set everything on buttons
+		Robot.hanger.runTapeMeasure(0.5*(Robot.oi.getToolLeftY()));
 
 	}
 

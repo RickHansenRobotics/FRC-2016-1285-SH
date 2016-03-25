@@ -6,7 +6,8 @@
 package com.team1285.frc2016;
 
 import com.ni.vision.NIVision.Image;
-import com.team1285.frc2016.autonCommands.DefenceCrossAuton;
+import com.team1285.frc2016.autonCommands.DefenceCrossAutonLong;
+import com.team1285.frc2016.autonCommands.DefenceCrossAutonShort;
 import com.team1285.frc2016.autonCommands.NoAuton;
 import com.team1285.frc2016.autonCommands.ReadyPosAuton;
 import com.team1285.frc2016.autonCommands.SpyZoneAuton;
@@ -47,17 +48,18 @@ public class Robot extends IterativeRobot {
 	CameraServer server;
 	
 	public Robot() {
-		server = CameraServer.getInstance();
-		server.setQuality(25);
-		// the camera name (ex "cam0") can be found through the roborio web
-		// interface
-		
-		server.startAutomaticCapture("cam0");
+//		server = CameraServer.getInstance();
+//		server.setQuality(25);
+//		// the camera name (ex "cam0") can be found through the roborio web
+//		// interface
+//		
+//		server.startAutomaticCapture("cam0");
 	}
 
 	// Command autonomousCommand;
 
 	public SendableChooser autoChooser;
+	public SendableChooser testChooser;
 
 	Command autonomousCommand;
 
@@ -68,17 +70,23 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No Auton", new NoAuton());
-		autoChooser.addObject("Cross Defence", new DefenceCrossAuton());
+		autoChooser.addObject("Cross Defence (Short)", new DefenceCrossAutonShort());
+		autoChooser.addObject("Cross Defence (Long)", new DefenceCrossAutonLong());
 		autoChooser.addObject("Ready Position", new ReadyPosAuton());
 		autoChooser.addObject("SpyZone Auton", new SpyZoneAuton());
-
-		SmartDashboard.putData("auto", autoChooser);
+		
+//		testChooser = new SendableChooser();
+//		testChooser.addDefault("test", new NoAuton());
+//		SmartDashboard.putData("test", testChooser);
+		
+		SmartDashboard.putData("test", autoChooser);
 
 		updateSmartDashboard();
 	}
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		updateSmartDashboard();
 	}
 
 	public void autonomousInit() {
@@ -120,7 +128,7 @@ public class Robot extends IterativeRobot {
 		updateSmartDashboard();
 		System.out.println("Teleop" + Math.round(wedge.getWedgePot()));
 
-		if (Robot.oi.getToolYButton()) {
+/*		if (Robot.oi.getToolYButton()) {
 			new WedgeSetpoint(26, 5).start();
 		} else if (Robot.oi.getToolXButton()) {
 			new WedgeSetpoint(54, 5).start();
@@ -128,7 +136,7 @@ public class Robot extends IterativeRobot {
 			new WedgeSetpoint(155, 5).start();
 		} else if (Robot.oi.getToolAButton()) {
 			new WedgeSetpoint(360, 5).start();
-		} 
+		} */
 
 	}
 

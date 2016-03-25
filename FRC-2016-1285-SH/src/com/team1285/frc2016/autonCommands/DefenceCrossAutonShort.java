@@ -10,9 +10,9 @@ import com.team1285.frc2016.commands.WedgeSetpoint;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class DefenceCrossAuton extends CommandGroup {
+public class DefenceCrossAutonShort extends CommandGroup {
 
-	public DefenceCrossAuton() {
+	public DefenceCrossAutonShort() {
 		// addSequential(new DriveDistance(144, 0.8, 5, 1));
 		// addSequential(new AutonTurn(45, 0.8, 0));
 		// addSequential(new DriveDistance(45, 0.8, 5, 1));
@@ -20,7 +20,7 @@ public class DefenceCrossAuton extends CommandGroup {
 		// addSequential(new AutonOuttake());
 
 		//addSequential(new WedgeSetpoint(155, 0.5));
-		addSequential(new TimedAuton(1, 6));
+		addSequential(new TimedAuton(1, 2));
 
 	}
 
