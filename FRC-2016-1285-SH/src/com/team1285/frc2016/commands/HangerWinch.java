@@ -26,7 +26,7 @@ public class HangerWinch extends Command {
 			Robot.hanger.runHanger(0);
 
 		}
-		// going up (if getToolLeftY is positive, 0.5), going down (if getToolLeftY is negative, 0.25)
+		// going up (if getToolLeftY>0, 0.5 speed), else (if getToolLeftY<0, 0.25 speed)
 		// set everything on buttons
 		Robot.hanger.runTapeMeasure(0.5*(Robot.oi.getToolLeftY()));
 

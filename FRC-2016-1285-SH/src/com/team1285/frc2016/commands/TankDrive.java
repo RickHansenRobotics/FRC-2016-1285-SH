@@ -32,17 +32,22 @@ public class TankDrive extends Command {
 	 */
 	protected void execute() {
 		/**
-		 * This statement will run the drive at 80% of speed unless Right Bumper 
+		 * This statement will run the drive at 80% of speed unless Right Bumper
 		 * is pressed.
 		 */
-		
-		/* Juice with Right Analog Button command instead of Right Bumper
-		* if (Robot.oi.getDriveRightAnalogButton()) || (Robot.oi.getDriveLeftAnalogButton()) {
-		*/
-		
-		if (Robot.oi.getDriveRightAnalogButton() || Robot.oi.getDriveLeftAnalogButton()) {
+
+		/*
+		 * Juice with Right Analog Button command instead of Right Bumper if
+		 * (Robot.oi.getDriveRightAnalogButton()) ||
+		 * (Robot.oi.getDriveLeftAnalogButton()) {
+		 */
+
+		if (Robot.oi.getDriveRightBumper()) {
 			Robot.drive.runLeftDrive(-(Robot.oi.getDriveLeftY()));
 			Robot.drive.runRightDrive((Robot.oi.getDriveRightY()));
+		} else if (Robot.oi.getDriveLeftBumper()) {
+			Robot.drive.runLeftDrive(-0.5 * (Robot.oi.getDriveLeftY()));
+			Robot.drive.runRightDrive(0.5 * (Robot.oi.getDriveRightY()));
 		} else {
 			Robot.drive.runLeftDrive(-0.8 * (Robot.oi.getDriveLeftY()));
 			Robot.drive.runRightDrive(0.8 * (Robot.oi.getDriveRightY()));
